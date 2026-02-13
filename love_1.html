@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Love Quiz 💖</title>
+   <!--Responsive meta tag -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: url('Love BG.jpeg') no-repeat center center fixed;
+      background-size: 100%100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    h2 {
+      color: #d6336c;
+      margin-bottom: 20px;
+    }
+    .quiz-container {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      padding: 30px;
+      max-width: 700px;
+      margin: 50px auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .question img {
+      max-width: 50%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .btn-option {
+      margin: 8px;
+      min-width: 220px;
+    }
+    #result {
+      font-weight: bold;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container text-center">
+    <h2>💖 Love Quiz 💖</h2>
+    <div id="quiz"></div>
+    <p id="result"></p>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const questions = [
+            {
+        question: "Mana Edharam first meet iyena Date?",
+        options: ["❤️May 10 2024", "❤️March 6 2024", "❤️April 7 2024"],
+        answer: "❤️March 6 2024",
+        image: "q2.jpeg"   // local image file
+      },
+      {
+        question: "Mana love story ki oka chakkani cinema peru cheppava?",
+        options: ["❤️ Geetha Govindam", "❤️ Happy ", "❤️ Kushi","❤️ Darling"],
+        answer: "❤️ Geetha Govindam",
+        image: "q1.jpeg"   // local image file
+      },
+      {
+        question: "Who is Lucky to have the other person?",
+        options: ["❤️ Vamsi", "❤️ Veena", "❤️ Both"],
+        answer: "❤️ Vamsi",
+        image: "q4.jpeg"   // local image file
+      },
+      {
+        question: "Spot the prettiest girl 👸 ?",
+        options: ["❤️ Kajol", "❤️ Mamitha", "❤️ Samantha","❤️ Veena"],
+        answer: "❤️ Veena",
+        image: "q6.jpeg"   // local image file
+      },
+      {
+        question: "Can I officially book you as my permanent Valentine?",
+        options: ["No cancellation policy 😜", "Lifetime reserved 😍", " Booking confirmed 💘","Already yours ❤️"],
+        answer: "Already yours ❤️",
+        image: "q3.jpeg"   // local image file
+      }
+    ];
+
+    let currentQuestion = 0;
+
+    function loadQuestion() {
+      const quizDiv = document.getElementById("quiz");
+      quizDiv.innerHTML = "";
+      const q = questions[currentQuestion];
+
+      const questionElem = document.createElement("div");
+      questionElem.className = "question";
+
+      // Add image
+      const imgElem = document.createElement("img");
+      imgElem.src = q.image;
+      questionElem.appendChild(imgElem);
+
+      // Add question text
+      const textElem = document.createElement("h4");
+      textElem.textContent = q.question;
+      questionElem.appendChild(textElem);
+
+      quizDiv.appendChild(questionElem);
+
+      // Add options
+      q.options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.className = "btn btn-outline-danger btn-option";
+        btn.textContent = opt;
+        btn.onclick = () => checkAnswer(opt);
+        quizDiv.appendChild(btn);
+      });
+    }
+
+    function checkAnswer(selected) {
+      const result = document.getElementById("result");
+      if (selected === questions[currentQuestion].answer) {
+        result.textContent = "Correct Chinnu 💕";
+        result.style.color = "green";
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+          setTimeout(loadQuestion, 1000);
+        } else {
+          result.textContent = "Love you chinnuulu  💖";
+          document.getElementById("quiz").innerHTML = "";
+        }
+      } else {
+        result.textContent = "Wrong Chinnu 💔";
+        result.style.color = "red";
+      }
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>
